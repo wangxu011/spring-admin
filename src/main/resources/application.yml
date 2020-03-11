@@ -1,0 +1,29 @@
+server:
+  port: 3001
+  
+spring:
+  application:
+    name: admin-server
+  security:
+    user:
+      name: admin
+      password: admin
+      
+
+eureka:
+  client:
+    service-url:
+        defaultZone: http://127.0.0.1:2001/eureka
+  instance:
+    metadata-map:
+      user.name: ${spring.security.user.name}
+      user.password: ${spring.security.user.password}
+      
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+  endpoint:
+    health:
+      show-details: ALWAYS
